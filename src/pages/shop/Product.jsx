@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import './shop.css'
 import { ShopContext } from '../../Context/Shop_Context'
+
 export const Product = ({ data }) => {
     const { id, ProductName, Price, ProductImage } = data;
-    const { addToCart } = useContext(ShopContext);
+    const { addToCart, cartItems } = useContext(ShopContext);
+    let count = cartItems[id];
     return (
         <div key={id} className='product'>
 
@@ -12,9 +14,9 @@ export const Product = ({ data }) => {
 
             <div className="des">
                 <h3>{ProductName}</h3>
-                <p>${Price}</p>
+                <p>Rs.{Price}</p>
             </div>
-            <button className="addtocart" onClick={() => addToCart()}>Add To Cart</button>
+            <button className="addtocart" onClick={() => addToCart(id)}>Add To Cart({count})</button>
 
         </div>
     )
