@@ -5,11 +5,17 @@ import './components/Navbar.css'
 import { Shop } from './pages/shop/shop'
 import { Cart } from './pages/cart/cart'
 import { Shop_Context } from './Context/Shop_Context'
+import { Signup } from './components/SignUp/Signup'
+import { AuthProvider } from './Context/AuthContext'
 
 function App() {
   return (
+
     <div className='App'>
-      <Shop_Context>
+      
+
+
+  <Shop_Context>
         <Router>
           <Navbar />
           <Routes>
@@ -17,7 +23,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
           </Routes>
         </Router>
-      </Shop_Context>
+      </Shop_Context> 
     </div>
   )
 }

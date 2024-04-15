@@ -3,9 +3,11 @@ import { Products } from '../../product'
 import { ShopContext } from '../../Context/Shop_Context'
 import { CartItem } from './cartItem'
 
+import { useNavigate } from "react-router-dom"
 import './cartitem.css'
 export const Cart = () => {
-    const { cartItems } = useContext(ShopContext);
+    const { cartItems, totalamount } = useContext(ShopContext);
+    const navi = useNavigate();
     return (
         <div className="cart-container">
             <div>
@@ -17,6 +19,11 @@ export const Cart = () => {
                         return <CartItem data={product} />
                     }
                 })}
+            </div>
+            <div className="checkout">
+                <h3>Total:Rs.{totalamount()}</h3>
+                <button onClick={() => navi('/')}>Continue Shoppig</button>
+                <button>Checkout</button>
             </div>
         </div>
     )

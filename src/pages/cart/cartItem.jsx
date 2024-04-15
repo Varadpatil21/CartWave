@@ -3,9 +3,9 @@ import { ShopContext } from '../../Context/Shop_Context';
 
 export const CartItem = ({ data }) => {
     const { id, ProductName, Price, ProductImage } = data;
-    const { cartItems } = useContext(ShopContext);
+    const { cartItems, addToCart, removefromCart, updateCartItemcount } = useContext(ShopContext);
     let count = cartItems[id];
-    const [man, setman] = useState(count);
+    // const [man, setman] = useState(count);
     return (
         <div className='cart-item'>
             <img src={ProductImage} className="cart-item-image" />
@@ -17,9 +17,9 @@ export const CartItem = ({ data }) => {
                 <p>Rs.{Price}</p>
             </div>
             <div className="manualchanger">
-                <button onClick={() => { if (man > 0) setman(man - 1) }}>-</button>
-                <input value={man}></input>
-                <button onClick={() => setman(man + 1)}>+</button>
+                <button onClick={() => removefromCart(id)}>-</button>
+                <input value={cartItems[id]} onChange={(e) => { updateCartItemcount(Number(e.target.value), id) }}></input>
+                <button onClick={() => addToCart(id)}>+</button>
 
             </div>
         </div>
